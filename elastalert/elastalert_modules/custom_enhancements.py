@@ -9,3 +9,8 @@ class PctgEnhancement(BaseEnhancement):
         if 'system' in match:
             if 'filesystem' in match['system']:
                 match['system']['filesystem']['used']['pct_enhanced'] = match['system']['filesystem']['used']['pct'] * 100
+            if 'memory' in match['system']:
+                match['system']['memory']['actual']['used']['pct_enhanced'] = match['system']['memory']['actual']['used']['pct'] * 100
+            if 'cpu' in match['system']:
+                for cpu_type in match['system']['cpu'].keys():
+                    match['system']['cpu'][cpu_type]['pct_enhanced'] = match['system']['cpu'][cpu_type]['pct'] * 100
