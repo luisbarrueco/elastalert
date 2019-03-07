@@ -293,9 +293,14 @@ class FrequencyRule(RuleType):
 class AnyRule(RuleType):
     """ A rule that will match on any input data """
 
+    def __init__(self, *args):
+        super(AnyRule, self).__init__(*args)
+        self.minimum_hits = self.rules.get('minimum_hits', 1)
+
     def add_data(self, data):
-        for datum in data:
-            self.add_match(datum)
+        if len(data) >= self.minimum_hits:
+            for datum in data:
+                self.add_match(datum)
 
 
 class EventWindow(object):
